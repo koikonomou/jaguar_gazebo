@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <arg name="world_name" default="worlds/outdoor_terrain.world"/>
+
+  <include file="$(find jaguar_gazebo)/launch/outdoor_terrain_world.launch">
+
+    <arg name="world_name" value="$(arg world_name)"/> <!-- world_name is wrt GAZEBO_RESOURCE_PATH environment variable -->
+
+  </include>
+
+  <include file="$(find jaguar_gazebo)/launch/spawn_jaguar.launch">
+  </include>
+
+</launch>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <arg name="world_name" default="worlds/outdoor_terrain.world"/>
+  <arg name="laser_enabled" default="false"/>
+  <arg name="kinect_enabled" default="true"/>
+
+  <include file="$(find jaguar_gazebo)/launch/outdoor_terrain_world.launch">
+    <arg name="world_name" value="$(arg world_name)"/> 
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <include file="$(find jaguar_gazebo)/launch/spawn_huskara.launch">
+    <arg name="laser_enabled" value="$(arg laser_enabled)"/>
+    <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
+  </include>
+
+</launch>
