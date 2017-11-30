@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 
 <launch>
+  <arg name="rulah_simulation" default="true"/>
 
   <arg name="world_name" default="worlds/outdoor_terrain.world"/>
   <arg name="3D_enabled" default="true"/>
