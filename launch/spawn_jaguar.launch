@@ -4,7 +4,7 @@
 
 
   <arg name="robot_name" default="jaguar"/>
-
+  <arg name="3D_enabled" default="true"/>
   <arg name="x" default="0.5"/>
   <arg name="y" default="0.5"/>
   <arg name="z" default="4.0"/>
@@ -12,6 +12,7 @@
 
 
       <include file="$(find jaguar_description)/launch/description.launch" >
+        <arg name="3D_enabled" default="true"/>
         <!--<arg name="robot_namespace" value="$(arg robot_namespace)"/>-->
       </include>
 
@@ -23,6 +24,38 @@
       <rosparam command="load" file="$(find jaguar_control)/config/control.yaml" />
       <include file="$(find jaguar_control)/launch/control.launch">
       </include>
+
+
+    <group if="$(arg 3D_enabled)">
+
+      <!-- Include poincloud_to_laserscan if simulated Kinect is attached -->
+      <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan" output="screen">
+
+          <remap from="cloud_in" to="camera/depth/points"/>
+          <remap from="scan" to="camera/scan"/>
+          <rosparam>
+              target_frame: base_link # Leave empty to output scan in the pointcloud frame
+              tolerance: 1.0
+              min_height: 0.05
+              max_height: 1.0
+
+              angle_min: -1 # -30.0*M_PI/180.0
+              angle_max: 1 # 30.0*M_PI/180.0
+              angle_increment: 0.005 # M_PI/360.0
+              scan_time: 0.3333
+              range_min: 0.45
+              range_max: 4.0
+              use_inf: true
+
+              # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+              # 0 : Detect number of cores
+              # 1 : Single threaded
+              # 2->inf : Parallelism level
+              concurrency_level: 1
+          </rosparam>
+      </node>
+
+    </group>
 
     <!-- Spawn robot in gazebo -->
     <node name="spawn_jaguar_model" pkg="gazebo_ros" type="spawn_model"
