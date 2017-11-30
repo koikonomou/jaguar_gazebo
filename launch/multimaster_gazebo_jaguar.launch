@@ -1,13 +1,9 @@
 <?xml version="1.0"?>
 <launch>
-  <!--
-  Configures topic/service relays for a robot instance in gazebo. Must run together with multimaster_gazebo launch to
-  implement a multimaster simulation instance.
-  -->
 
-  <!-- robot_name needs to be a unique name for this robot -->
-  <arg name="robot_name" default="/"/>
-  <arg name="gazebo_interface" default="$(find multimaster_launch)/config/empty.yaml"/>
+
+  <arg name="robot_name" default="jaguar"/>
+  <arg name="gazebo_interface" default="$(find jaguar_gazebo)/launch/empty.yaml"/>
 
 
 
