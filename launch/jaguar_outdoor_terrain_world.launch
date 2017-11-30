@@ -3,7 +3,7 @@
 <launch>
   <arg name="rulah_simulation" default="true"/>
 
-  <arg name="world_name" default="worlds/outdoor_terrain.world"/>
+  <arg name="world_name" default="$(find jaguar_gazebo)/worlds/outdoor_terrain.world"/>
   <arg name="3D_enabled" default="true"/>
   <include file="$(find jaguar_gazebo)/launch/outdoor_terrain_world.launch">
 

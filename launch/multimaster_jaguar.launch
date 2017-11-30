@@ -5,8 +5,8 @@
   <!-- robot_name needs to be a unique name for this robot -->
   <arg name="robot_name" default="/"/>
 
-  <arg name="gazebo_interface" default="$(find multimaster_launch)/config/empty.yaml"/>
-  <arg name="public_interface" default="$(find multimaster_launch)/config/empty.yaml"/>
+  <arg name="gazebo_interface" default="$(find jaguar_gazebo)/launch/empty.yaml"/>
+  <arg name="public_interface" default="$(find jaguar_gazebo)/launch/empty.yaml"/>
   <arg name="simulation" default="$(optenv ROBOT_SIMULATION false)"/>
 
 
